@@ -1,0 +1,30 @@
+#!/bin/bash
+rm -rf /tmp/ocis/
+
+mkdir /tmp/ocis/storage/users -p
+mkdir /tmp/ocis/owncloud/data -p
+
+export OCIS_URL=https://localhost:9200
+export STORAGE_HOME_DRIVER=$DRIVER
+export STORAGE_USERS_DRIVER=$DRIVER
+export STORAGE_DRIVER_OCIS_ROOT=/tmp/ocis/storage/users
+export STORAGE_DRIVER_LOCAL_ROOT=/tmp/ocis/local/root
+export STORAGE_METADATA_ROOT=/tmp/ocis/metadata
+export STORAGE_DRIVER_OWNCLOUD_DATADIR=/tmp/ocis/owncloud/data
+export STORAGE_HOME_DATA_SERVER_URL=http://localhost:9155/data
+export STORAGE_USERS_DATA_SERVER_URL=http://localhost:9158/data
+export STORAGE_SHARING_USER_JSON_FILE=/tmp/ocis/shares.json
+export PROXY_ENABLE_BASIC_AUTH=True
+export WEB_UI_CONFIG=$HOME/www/ocConfigs/ocis-config/ocis-config.json
+export IDP_IDENTIFIER_REGISTRATION_CONF=$HOME/www/ocConfigs/ocis-config/idp.yml
+export OCIS_LOG_LEVEL="error"
+export SETTINGS_DATA_PATH=/tmp/ocis/settings
+
+if [ $DRIVER == "owncloud" ]
+then
+	export STORAGE_DRIVER_OWNCLOUD_REDIS_ADDR=localhost:6379
+else
+	export STORAGE_DRIVER_OWNCLOUD_REDIS_ADDR=
+fi
+
+$HOME/go/src/github.com/owncloud/ocis/ocis/bin/ocis server
