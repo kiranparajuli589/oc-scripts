@@ -9,17 +9,9 @@
   },
   "apps": [
     "files",
+    "draw-io",
+    "markdown-editor",
     "media-viewer"
   ],
-  "external_apps": [
-    {
-      "id": "draw-io",
-      "path": "web-app-draw-io",
-      "config": {
-        "url": "https://embed.diagrams.net",
-        "autosave": false,
-        "theme": "minimal"
-      }
-    }
-  ]
+  "external_apps": []
 }
