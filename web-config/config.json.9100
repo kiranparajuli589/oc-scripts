@@ -3,7 +3,7 @@
   "theme": "owncloud",
   "version": "0.1.0",
   "auth": {
-    "clientId": "Cxfj9F9ZZWQbQZps1E1M0BszMz6OOFq3lxjSuc8Uh4HLEYb9KIfyRMmgY5ibXXrU",
+    "clientId": "SmLIHJ5eXKl3EiNTRsAdfw9BfDt4cwbLehVWeptpa5IDcrBxcesqyEnr1yqfSWkg",
     "url": "http://localhost/core/index.php/apps/oauth2/api/v1/token",
     "authUrl": "http://localhost/core/index.php/apps/oauth2/authorize"
   },
