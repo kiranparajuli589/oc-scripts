@@ -15,8 +15,8 @@ export STORAGE_HOME_DATA_SERVER_URL=http://localhost:9155/data
 export STORAGE_USERS_DATA_SERVER_URL=http://localhost:9158/data
 export STORAGE_SHARING_USER_JSON_FILE=/tmp/ocis/shares.json
 export PROXY_ENABLE_BASIC_AUTH=True
-export WEB_UI_CONFIG=$HOME/www/ocConfigs/ocis-config/ocis-config.json
-export IDP_IDENTIFIER_REGISTRATION_CONF=$HOME/www/ocConfigs/ocis-config/idp.yml
+export WEB_UI_CONFIG=$HOME/www/oc-configs/ocis-config/ocis-config.json
+export IDP_IDENTIFIER_REGISTRATION_CONF=$HOME/www/oc-configs/ocis-config/idp.yml
 export OCIS_LOG_LEVEL="error"
 export SETTINGS_DATA_PATH=/tmp/ocis/settings
 
