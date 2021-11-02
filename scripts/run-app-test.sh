@@ -36,7 +36,7 @@ cd $HOME/www/core/apps-external/"$APP"
 
 for (( i=1; i<=$MULTIPLE; i++ ))
 do
-	make test-acceptance-core-"$TEST_TYPE" BEHAT_FEATURE="$BEHAT_FEATURE"
+	make test-acceptance-"$TEST_TYPE" BEHAT_FEATURE="$BEHAT_FEATURE"
 done
 
 echo "Boom!"
