@@ -7,6 +7,6 @@ export TESTING_DATA_DIR="/tmp/testing/data"
 export WEB_UI_CONFIG="$HOME/www/ocConfigs/ocis-config/ocis-config.json"
 export LOCAL_UPLOAD_DIR="/uploads"
 
-cd $HOME/www/web
+cd $HOME/www/web/tests/acceptance
 
 yarn run test:acceptance:ocis "$1"

@@ -4,7 +4,7 @@ export SERVER_HOST=http://localhost/web/dist
 export BACKEND_HOST=http://localhost/core
 export REMOTE_BACKEND_HOST=http://localhost/owncloud-fed
 
-cd $HOME/www/web/
+cd $HOME/www/web/tests/acceptance
 
 declare -a PASS
 
