@@ -8,5 +8,17 @@ export WEB_UI_CONFIG="$HOME/www/ocConfigs/ocis-config/ocis-config.json"
 export LOCAL_UPLOAD_DIR="/uploads"
 
 cd $HOME/www/web/tests/acceptance
+echo $MULTIPLE
 
-yarn run test:acceptance:ocis "$1"
+if [ -z ${MULTIPLE} ]
+then
+	echo "Running test for single time"
+	MULTIPLE=1
+else
+	echo "Running test for multiple times"
+fi
+
+for (( i=1; i<=$MULTIPLE; i++ ))
+do
+	yarn run test:acceptance:ocis "$1"
+done
