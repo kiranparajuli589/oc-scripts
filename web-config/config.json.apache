@@ -1,0 +1,17 @@
+{
+  "server" : "http://localhost/core/",
+  "theme": "owncloud",
+  "version": "0.1.0",
+  "auth": {
+    "clientId": "dGND1DTkNdyiavjuMyKucqgnVc2LV4CKwXLXHqk2DMZLQHJbZbroG7nOM1xasg3i",
+    "url": "http://localhost/core/index.php/apps/oauth2/api/v1/token",
+    "authUrl": "http://localhost/core/index.php/apps/oauth2/authorize"
+  },
+  "apps": [
+    "files",
+    "draw-io",
+    "markdown-editor",
+    "media-viewer"
+  ],
+  "external_apps": []
+}
