@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export TEST_SERVER_URL=https://localhost:9200
-if [ $DRIVER == 'owncloud' ]
+if [ "$DRIVER" = 'owncloud' ]
 then
 	export OCIS_REVA_DATA_ROOT=/tmp/ocis/owncloud/data/
 	export OCIS_SKELETON_STRATEGY=copy
@@ -18,5 +18,5 @@ export SEND_SCENARIO_LINE_REFERENCES=true
 export STORAGE_DRIVER=$DRIVER
 export PATH_TO_CORE=$HOME/www/core
 
-cd $HOME/go/src/github.com/owncloud/ocis/
+cd "$HOME"/go/src/github.com/owncloud/ocis/ || exit
 make test-acceptance-api BEHAT_FEATURE=$1
