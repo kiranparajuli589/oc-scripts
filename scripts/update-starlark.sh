@@ -10,7 +10,7 @@ WAIT_FOR_FN=$(cat "$HOME"/www/useful/scripts/temp/wait.txt)
 
 BROWSER_SERVICE=$(cat "$HOME"/www/useful/scripts/temp/browser.txt)
 
-APP_LIST=("configreport" "contacts" "customgroups" "data_exporter" "diagnostics" "files_external_dropbox" "files_external_ftp" "files_external_s3" "files_ldap_home" "files_lifecycle" "files_mediaviewer" "files_onedrive" "files_paperhive" "files_pdfviewer" "files_texteditor" "firstrunwizard" "guests" "impersonate" "market" "metrics" "notes" "notifications" "oauth2" "objectstore" "openidconnect" "ownbrander" "richdocuments" "sharepoint" "smb_acl" "systemtags_management" "templateeditor" "testing" "theme-enterprise" "twofactor_backup_codes" "twofactor_totp" "user_external" "user_shibboleth" "web" "windows_network_drive" "wopi")
+APP_LIST=("objectstore" "openidconnect" "ownbrander" "richdocuments" "sharepoint" "smb_acl" "systemtags_management" "templateeditor" "testing" "theme-enterprise" "twofactor_backup_codes" "twofactor_totp" "user_external" "user_shibboleth" "web" "windows_network_drive" "wopi")
 
 for app in "${APP_LIST[@]}"
 do
@@ -39,7 +39,7 @@ do
   CEPH_LINE=$(sed -n "/\"name\": \"setup-ceph\",/=" .drone.star)
   if [[ -n $CEPH_LINE ]]
   then
-    CEPH_START=$(($CEPH_LINE - 1))
+    CEPH_START=$(($CEPH_LINE-1))
     CEPH_END=$(($CEPH_START+7))
 
     sed "$CEPH_START","$CEPH_END"d .drone.star > new
@@ -58,7 +58,7 @@ do
   SCALITY_LINE=$(sed -n "/\"name\": \"setup-scality\",/=" .drone.star)
   if [[ -n $SCALITY_LINE ]]
   then
-    SCALITY_FROM=$(($SCALITY_LINE - 1))
+    SCALITY_FROM=$(($SCALITY_LINE-1))
     SCALITY_TO=$(($SCALITY_FROM+9))
 
     sed "$SCALITY_FROM","$SCALITY_TO"d .drone.star > new
@@ -116,12 +116,19 @@ do
   REDUCED_DB_LINE=$(sed -n "/\"reducedDatabases\": {/=" .drone.star)
   if [[ -n $REDUCED_DB_LINE ]]
   then
-    REDUCED_FROM=$((REDUCED_DB_LINE))
-    REDUCED_TO=$((REDUCED_FROM+9))
+    set -f # avoid globbing (expansion of *).
+    REDUCED_DB_OCC_ARRAY=(${REDUCED_DB_LINE// / })
+    echo "$REDUCED_DB_OCC_ARRAY"
+    for LINE in "${REDUCED_DB_OCC_ARRAY[@]}"
+    do
+      REDUCED_FROM=$(($LINE))
+      REDUCED_TO=$(($REDUCED_FROM+9))
 
-    sed "$REDUCED_FROM","$REDUCED_TO"d .drone.star > new
-    rm -rf .drone.star
-    mv new .drone.star
+      sed "$REDUCED_FROM","$REDUCED_TO"d .drone.star > new
+      rm -rf .drone.star
+      mv new .drone.star
+      break
+    done
   fi
   # add constant declarations at the top of the file
   sed -i "1s/^/$CONSTANTS/" .drone.star
