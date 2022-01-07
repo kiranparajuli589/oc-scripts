@@ -1,44 +1,47 @@
 # OCIS: true if running with the ocis server
 # RETRY: set integer if retires are needed
 # FEATURE: the feature path from path $HOME/www/web/tests/e2e/cucumber
+# example: bash -x scripts/web-e2e.sh --ocis --retry 5 kindergarten.feature
 
-while [[ $# -gt 0 ]]
-do
+# $# is the number of arguments
+# while loop looks for all provided arguments
+# matching values inside the case statement
+# shift takes the first one away
+while [[ $# -gt 0 ]]; do
 	key="$1"
 	case ${key} in
-		-o|--ocis)
-			OCIS="$2"
-			shift
-			;;
-		-f|--feature)
-			FEATURE="$2"
-			shift
-			;;
-    -r|--retry)
-      RETRY="$2"
-      shift
-      ;;
-      *)
-			FEATURE="$1"
-			;;
-		esac
+	-o | --ocis)
+		OCIS=true
+		;;
+	-r | --retry)
+		RETRY="$2"
 		shift
+		;;
+	-f | --feature)
+		FEATURE="$2"
+		shift
+		;;
+	*)
+		export FEATURE="$1"
+		;;
+	esac
+	shift
 done
 
-if [ "$OCIS" = true ]
-then
-  BACKEND_HOST=https://localhost:9200
+if [ "$OCIS" = true ]; then
+	export BACKEND_HOST=https://localhost:9200
 else
-  BACKEND_HOST=http://localhost/core
-  SERVER_HOST=http://localhost/web/dist
+	export BACKEND_HOST=http://localhost/core
+	# do not use web integration app but the web itself
+	export SERVER_HOST=http://localhost/web/dist
 fi
 
-MIDDLEWARE_HOST=http://localhost:3000
+export MIDDLEWARE_HOST=http://localhost:3000
 
-if [[ -z "${RETRY}" ]]
-then
-  RETRY=0
+if [[ -z "${RETRY}" ]]; then
+	RETRY=0
 fi
 
+# assumes web repo cloned under "$HOME"/www/web/
 cd "$HOME"/www/web/ || exit
 yarn test:e2e:cucumber tests/e2e/cucumber/"${FEATURE}"
