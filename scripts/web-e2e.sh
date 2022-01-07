@@ -29,7 +29,8 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [ "$OCIS" = true ]; then
-	export BACKEND_HOST=https://localhost:9200
+	export OCIS=true
+	export BASE_URL_OCIS=localhost:9200
 else
 	export BACKEND_HOST=http://localhost/core
 	# do not use web integration app but the web itself
