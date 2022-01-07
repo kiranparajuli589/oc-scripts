@@ -6,12 +6,14 @@
 # assumes middleware repo cloned under:
 cd "$HOME"/www/owncloud-test-middleware/ || exit
 
-if [ "$1" = "-o"  ]
-then
-  export BACKEND_HOST=https://localhost:9200
+if [ "$1" = "-o" ]; then
+	export RUN_ON_OCIS=true
+	export BACKEND_HOST=https://localhost:9200
 else
-  export BACKEND_HOST=http://localhost/core
+	export BACKEND_HOST=http://localhost/core
 fi
 
+export NODE_TLS_REJECT_UNAUTHORIZED=0
+export REMOTE_UPLOAD_DIR=$HOME/www/owncloud-test-middleware/filesForUpload
 
 yarn start
