@@ -1,1 +1,0 @@
-def waitForBrowserService(browser):\n    if browser in [\"chrome\", \"firefox\"]:\n        return [{\n            \"name\": \"wait-for-selenium\",\n            \"image\": OC_CI_WAIT_FOR,\n            \"commands\": [\n                \"wait-for -it selenium:4444 -t 600\",\n            ],\n        }]\n\n    return []\n
