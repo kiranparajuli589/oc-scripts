@@ -6,6 +6,7 @@ export SERVER_HOST=http://localhost/web/dist
 export BACKEND_HOST=http://localhost/core
 export REMOTE_BACKEND_HOST=http://localhost/owncloud-fed
 export MIDDLEWARE_HOST="http://localhost:3000"
+export REMOTE_UPLOAD_DIR=$HOME/www/owncloud-test-middleware/filesForUpload/
 
 cd "$HOME"/www/web/tests/acceptance || exit
 
