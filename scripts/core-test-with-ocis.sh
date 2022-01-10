@@ -1,4 +1,7 @@
 #!/bin/bash
+
+# $1 -> feature path from tests/features/acceptance/
+
 export TEST_SERVER_URL="https://localhost:9200"
 
 export SKELETON_DIR="$HOME/www/core/apps-external/testing/data/apiSkeleton"
@@ -19,5 +22,6 @@ else
 	export BEHAT_FILTER_TAGS="~@skipOnOcis&&~@notToImplementOnOCIS&&~@toImplementOnOCIS&&~comments-app-required&&~@federation-app-required&&~@notifications-app-required&&~systemtags-app-required&&~@local_storage&&~@skipOnOcis-OCIS-Storage"
 fi
 
+# assumes owncloud core repo cloned at $HOME/www/core
 cd "$HOME"/www/core || exit
-make test-acceptance-api BEHAT_FEATURE="$1"
+make test-acceptance-api BEHAT_FEATURE=tests/acceptance/features/"$1"
