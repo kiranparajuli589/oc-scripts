@@ -8,6 +8,7 @@ cd "$HOME"/www/owncloud-test-middleware/ || exit
 
 if [ "$1" = "-o" ]; then
 	export RUN_ON_OCIS=true
+	export OCIS_REVA_DATA_ROOT="/tmp/ocis/owncloud/data"
 	export BACKEND_HOST=https://localhost:9200
 else
 	export BACKEND_HOST=http://localhost/core
