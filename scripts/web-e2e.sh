@@ -37,8 +37,6 @@ else
 	export SERVER_HOST=http://localhost/web/dist
 fi
 
-export MIDDLEWARE_HOST=http://localhost:3000
-
 if [[ -z "${RETRY}" ]]; then
 	RETRY=0
 fi
