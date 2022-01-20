@@ -2,7 +2,7 @@
 
 # $1 -> path to the feature file from the tests/acceptance/features directory
 
-export SERVER_HOST=http://localhost/web/dist
+export SERVER_HOST=http://localhost:9100
 export BACKEND_HOST=http://localhost/core
 export REMOTE_BACKEND_HOST=http://localhost/owncloud-fed
 export MIDDLEWARE_HOST="http://localhost:3000"
