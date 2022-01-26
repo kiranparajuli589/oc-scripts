@@ -11,7 +11,7 @@ export SEND_SCENARIO_LINE_REFERENCES="true"
 if [ "$DRIVER" = 'owncloud' ]
 then
 	export STORAGE_DRIVER="$DRIVER"
-	export OCIS_REVA_DATA_ROOT="/$HOME/www/core/data"
+	export OCIS_REVA_DATA_ROOT="$HOME/www/core/data"
 	export OCIS_SKELETON_STRATEGY="copy"
 	export UPLOAD_DELETE_WAIT_TIME="1"
 	export BEHAT_FILTER_TAGS="~@skipOnOcis&&~@notToImplementOnOCIS&&~@toImplementOnOCIS&&~comments-app-required&&~@federation-app-required&&~@notifications-app-required&&~systemtags-app-required&&~@local_storage&&~@skipOnOcis-OC-Storage"
