@@ -5,6 +5,7 @@
 export TEST_SERVER_URL="https://localhost:9200"
 
 export SKELETON_DIR="$HOME/www/core/apps-external/testing/data/apiSkeleton"
+export EXPECTED_FAILURES_FILE="$HOME/go/src/github.com/owncloud/ocis/tests/acceptance/expected-failures-API-on-OCIS-storage.md"
 export TEST_OCIS="true"
 export SEND_SCENARIO_LINE_REFERENCES="true"
 
