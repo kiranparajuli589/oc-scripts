@@ -17,4 +17,4 @@ fi
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 export REMOTE_UPLOAD_DIR=$HOME/www/owncloud-test-middleware/filesForUpload
 
-yarn start
+yarn run watch
