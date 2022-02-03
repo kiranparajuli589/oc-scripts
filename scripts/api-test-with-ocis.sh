@@ -23,6 +23,8 @@ else
 	export BEHAT_FILTER_TAGS="~@skipOnOcis&&~@notToImplementOnOCIS&&~@toImplementOnOCIS&&~comments-app-required&&~@federation-app-required&&~@notifications-app-required&&~systemtags-app-required&&~@local_storage&&~@skipOnOcis-OCIS-Storage"
 fi
 
+export SSLKEYLOGFILE=/tmp/sslkey.log
+
 # assumes owncloud core repo cloned at $HOME/www/core
 cd "$HOME"/www/core || exit
 make test-acceptance-api BEHAT_FEATURE=tests/acceptance/features/"$1"
