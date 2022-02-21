@@ -19,4 +19,4 @@ export STORAGE_DRIVER=$DRIVER
 export PATH_TO_CORE=$HOME/www/core
 
 cd "$HOME"/go/src/github.com/owncloud/ocis/ || exit
-make test-acceptance-api BEHAT_FEATURE=$1
+make test-acceptance-api BEHAT_FEATURE="$1"

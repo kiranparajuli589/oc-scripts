@@ -1,3 +1,5 @@
+#!/bin/bash
+
 while [[ $# -gt 0 ]]
 do
 	key="$1"
@@ -25,18 +27,16 @@ do
 		shift
 done
 
-echo "APP: $APP"
-echo "TEST_TYPE: $TEST_TYPE"
-echo "MULTIPLE: $MULTIPLE"
-echo "BEHAT_FEATURE: $BEHAT_FEATURE"
-
 export TEST_SERVER_URL=http://localhost/core
 
-cd "$HOME"/www/core/apps-external/"$APP" || exit
+cd "$HOME""/www/core/apps-external/""$APP" || exit
+
+if [ -z "$MULTIPLE" ] || [ "$MULTIPLE" -lt 1 ]
+then
+	MULTIPLE=1
+fi
 
 for (( i=1; i<="$MULTIPLE"; i++ ))
 do
 	make test-acceptance-"$TEST_TYPE" BEHAT_FEATURE="$BEHAT_FEATURE"
 done
-
-echo "Boom!"

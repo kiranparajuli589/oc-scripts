@@ -1,7 +1,7 @@
 # OCIS: true if running with the ocis server
 # RETRY: set integer if retires are needed
 # FEATURE: the feature path from path $HOME/www/web/tests/e2e/cucumber
-# example: bash -x scripts/web-e2e.sh --ocis --retry 5 kindergarten.feature
+# example: bash -x scripts/run_web_e2e.sh --ocis --retry 5 kindergarten.feature
 
 # $# is the number of arguments
 # while loop looks for all provided arguments
