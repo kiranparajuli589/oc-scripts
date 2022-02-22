@@ -58,11 +58,27 @@ then
 	MULTIPLE=1
 fi
 
+declare -A RESULT_ARRAY
+
 for (( i=1; i<="$MULTIPLE"; i++ ))
 do
-	if [ $WITH_OCIS = "True" ]; then
-		yarn test:acceptance:ocis features/"$FEATURE"
+	case "$WITH_OCIS" in
+		True) SCRIPT="test:acceptance:ocis" ;;
+		*) SCRIPT="test:acceptance:oc10" ;;
+	esac
+	if yarn "$SCRIPT" features/"$FEATURE"
+	then
+		RESULT_ARRAY[$i]=0
 	else
-		yarn run test:acceptance:oc10 features/"$FEATURE"
+		RESULT_ARRAY[$i]=1
 	fi
+done
+
+echo "Test Summary:"
+echo "________________________________"
+
+for i in "${!RESULT_ARRAY[@]}"
+do
+	STATUS=$( [ ${RESULT_ARRAY[$i]} == 0 ] && echo "Passed (0)" || echo "Failed (1)" )
+	echo -e "Iteration: ""$i""\tStatus: ""$STATUS"
 done
