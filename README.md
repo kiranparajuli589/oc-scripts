@@ -22,11 +22,11 @@
 
 ## Run services
 ```sh
-bash -x services/ocis.sh --help
+bash services/ocis.sh --help
 ```
 
 ## Run scripts
 ```sh
-bash -x scripts/run_api_test_with_ocis.sh someSuite/someFeature.feature
+bash scripts/run_api_test_with_ocis.sh --help
 ```
 
