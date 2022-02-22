@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# wait for selenium to be up
+if wait-for-it localhost:4444 --timeout=5
+then
+	echo "Selenium is running at port 4444"
+else
+	echo "Hmm...looks like you forget to start selenium server."
+	bash -x "$HOME"/www/useful/services/web_selenium.sh
+	wait-for-it localhost:4444 --timeout=5
+fi
+
 while test $# -gt 0; do
 	key="$1"
 	case ${key} in
