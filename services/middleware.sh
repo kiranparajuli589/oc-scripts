@@ -1,6 +1,10 @@
 #!/bin/bash
 
-MIDDLEWARE_ROOT="$HOME""/www/owncloud-test-middleware/"
+# switch to nodejs 16
+
+nvm use 16
+
+MIDDLEWARE_ROOT="$HOME""/www/owncloud-test-middleware"
 
 FRESH=False
 WITH_OCIS=False
@@ -9,6 +13,24 @@ while test $# -gt 0
 do
 	key="$1"
 	case ${key} in
+		-h|--help)
+			echo "Welcome to start middleware script ;)"
+			echo " "
+			echo "Options:"
+			echo "-h, --help -> shows brief help about the script"
+			echo "-r, --root -> path where the 'owncloud-test-middleware' repository is cloned."
+			echo "	(please do not include the last trailing slash)"
+			echo "	default: ""$HOME""/go/src/github.com/owncloud/ocis"
+			echo "-f, --fresh -> start fresh middleware"
+			echo "	checkouts to the latest code, builds and starts the service"
+			echo "-o, --ocis -> start middleware with the 'ocis' backend"
+			echo " "
+			exit 0
+			;;
+		-r|--root)
+			MIDDLEWARE_ROOT=$2
+			shift
+			;;
 		-f|--fresh)
 			FRESH="True"
 			;;
@@ -43,6 +65,6 @@ else
 fi
 
 export NODE_TLS_REJECT_UNAUTHORIZED=0
-export REMOTE_UPLOAD_DIR="$MIDDLEWARE_ROOT""filesForUpload"
+export REMOTE_UPLOAD_DIR="$MIDDLEWARE_ROOT""/filesForUpload"
 
 yarn run watch
