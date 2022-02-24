@@ -1,2 +1,5 @@
 .idea/
 scripts/temp/
+.env
+list.txt
+owncloud-repos.json
