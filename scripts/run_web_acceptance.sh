@@ -39,12 +39,12 @@ do
 		echo -e "\t\t\t  - while testing with ocis backend: https://localhost/9200"
 		echo "BACKEND_HOST         ➡  server host url"
 		echo -e "\t\t\tDEFAULT:"
-		echo -e "\t\t\t  - while testing with oc10 backend: http://localhost/core"
+		echo -e "\t\t\t  - while testing with oc10 backend: http://localhost/owncloud/core"
 		echo -e "\t\t\t  - while testing with ocis backend: https://localhost/9200"
 		echo "REMOTE_BACKEND_HOST  ➡  remote backend host url (only set while running with oc10 backend for now)"
     		echo -e "\t\t\tDEFAULT: http://localhost/owncloud-fed"
 		echo "TESTING_DATA_DIR     ➡  path to the 'testing' data directory"
-		echo -e "\t\t\tDEFAULT: $HOME/www/core/apps/testing/data"
+		echo -e "\t\t\tDEFAULT: $HOME/www/owncloud/core/apps/testing/data"
 		echo ""
 		exit 0
 		;;
@@ -89,12 +89,12 @@ if [ $WITH_OCIS = "True" ]; then
 	export SERVER_HOST=${SERVER_HOST:-"https://localhost:9200"}  # where the ui is running
 	export BACKEND_HOST=${BACKEND_HOST:-"https://localhost:9200"} # where the api service is running
 	export OCIS_REVA_DATA_ROOT="/tmp/ocis/owncloud/data"
-	export TESTING_DATA_DIR=${TESTING_DATA_DIR:-"$HOME/www/core/apps/testing/data"}
+	export TESTING_DATA_DIR=${TESTING_DATA_DIR:-"$HOME/www/owncloud/core/apps/testing/data"}
 	export LOCAL_UPLOAD_DIR="/uploads"
 	export WEB_UI_CONFIG="$HOME/www/useful/ocis-config/web-config.json"
 else
 	export SERVER_HOST=${SERVER_HOST:-"http://localhost/web/dist"}
-	export BACKEND_HOST=${BACKEND_HOST:-"http://localhost/core"}
+	export BACKEND_HOST=${BACKEND_HOST:-"http://localhost/owncloud/core"}
 	export REMOTE_BACKEND_HOST=${REMOTE_BACKEND_HOST:-"http://localhost/owncloud-fed"}
 fi
 

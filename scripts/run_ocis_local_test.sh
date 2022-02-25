@@ -5,9 +5,9 @@ OCIS_ROOT=${OCIS_ROOT:-"$HOME""/go/src/github.com/owncloud/ocis"}
 export TEST_OCIS=true
 export SEND_SCENARIO_LINE_REFERENCES=true
 export STORAGE_DRIVER=${STORAGE_DRIVER:-"ocis"}
-export PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""www/core"}
+export PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""www/owncloud/core"}
 export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://localhost:9200"}
-export SKELETON_DIR=${SKELETON_DIR:-"$HOME""www/core/apps-external/testing/data/apiSkeleton"}
+export SKELETON_DIR=${SKELETON_DIR:-"$HOME""www/owncloud/core/apps-external/testing/data/apiSkeleton"}
 
 while test $# -gt 0
 do
@@ -20,10 +20,10 @@ do
 		echo "Environments:"
 		echo "-------------"
 		echo "STORAGE_DRIVER   ➡  DEFAULT: 'ocis'"
-		echo "PATH_TO_CORE     ➡  DEFAULT: $HOME/www/core"
+		echo "PATH_TO_CORE     ➡  DEFAULT: $HOME/www/owncloud/core"
 		echo "TEST_SERVER_URL  ➡  DEFAULT: https://localhost:9200"
 		echo "OCIS_ROOT        ➡  DEFAULT: $HOME/go/src/github.com/owncloud/ocis"
-		echo "SKELETON_DIR     ➡  DEFAULT: $HOME/www/core/apps-external/testing/data/apiSkeleton"
+		echo "SKELETON_DIR     ➡  DEFAULT: $HOME/www/owncloud/core/apps-external/testing/data/apiSkeleton"
 		echo ""
 		exit 0
 		;;

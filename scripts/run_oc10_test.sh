@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH_TO_CORE=${PATH_TO_CORE:-"$HOME/www/core"}
+PATH_TO_CORE=${PATH_TO_CORE:-"$HOME/www/owncloud/core"}
 
 while test $# -gt 0
 do
@@ -22,8 +22,8 @@ do
 		echo "Environments:"
 		echo "-------------"
 		echo "SELENIUM_PORT        ➡  DEFAULT: 4444"
-		echo "PATH_TO_CORE         ➡  DEFAULT: $HOME/www/core"
-		echo "TEST_SERVER_URL      ➡  DEFAULT: http://localhost/core"
+		echo "PATH_TO_CORE         ➡  DEFAULT: $HOME/www/owncloud/core"
+		echo "TEST_SERVER_URL      ➡  DEFAULT: http://localhost/owncloud/core"
 		echo "TEST_SERVER_FED_URL  ➡  DEFAULT: http://localhost/owncloud-fed"
 		echo ""
 		exit 0
@@ -43,7 +43,7 @@ do
 	shift
 done
 
-export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://localhost/core"}
+export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://localhost/owncloud/core"}
 export TEST_SERVER_FED_URL=${TEST_SERVER_FED_URL:-"http://localhost/owncloud-fed"}
 if [ "$1" = 'webui' ]
 then

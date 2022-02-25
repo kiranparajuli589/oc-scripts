@@ -1,10 +1,10 @@
 {
-  "server" : "http://localhost/core/",
+  "server" : "http://localhost/owncloud/core/",
   "theme": "owncloud",
   "auth": {
     "clientId": "848uMJQ8trOUrXCVJsvPcrqbHhXv9PuQuXBpzxhBKG20gvkLLBWpBGbAmD2Y6Mvr",
-    "url": "http://localhost/core/index.php/apps/oauth2/api/v1/token",
-    "authUrl": "http://localhost/core/index.php/apps/oauth2/authorize"
+    "url": "http://localhost/owncloud/core/index.php/apps/oauth2/api/v1/token",
+    "authUrl": "http://localhost/owncloud/core/index.php/apps/oauth2/authorize"
   },
   "apps" : [
     "files",
@@ -20,7 +20,7 @@
         "zh_CN": "文件"
       },
       "icon": "switch_ui",
-      "url": "http://localhost/core/index.php/apps/files"
+      "url": "http://localhost/owncloud/core/index.php/apps/files"
     },
     {
       "icon": "application",
@@ -30,7 +30,7 @@
         "de": "Einstellungen",
         "en": "Settings"
       },
-      "url": "http://localhost/core/index.php/settings/personal"
+      "url": "http://localhost/owncloud/core/index.php/settings/personal"
     }
   ]
 }

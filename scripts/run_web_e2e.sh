@@ -29,7 +29,7 @@ while test $# -gt 0; do
 		echo "BASE_URL_OCIS    ➡  only required while running with ocis backend"
 		echo -e "\t\t  DEFAULT: localhost:9200"
 		echo "BACKEND_HOST     ➡  only required while running with oc10 backend"
-		echo -e "\t\t  DEFAULT: http://localhost/core"
+		echo -e "\t\t  DEFAULT: http://localhost/owncloud/core"
 		echo "SERVER_HOST      ➡  only required while running with oc10 backend"
 		echo -e "\t\t  DEFAULT: http://localhost/web/dist"
 		exit 0
@@ -56,7 +56,7 @@ if [ "$WITH_OCIS" = true ]; then
 	export OCIS=true
 	export BASE_URL_OCIS=${BASE_URL_OCIS:-"localhost:9200"}
 else
-	export BACKEND_HOST=${BACKEND_HOST:-"http://localhost/core"}
+	export BACKEND_HOST=${BACKEND_HOST:-"http://localhost/owncloud/core"}
 	# do not use web integration app but the web itself
 	export SERVER_HOST=${SERVER_HOST:-"http://localhost/web/dist"}
 fi

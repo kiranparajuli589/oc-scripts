@@ -16,7 +16,7 @@ while test $# -gt 0; do
 		echo ""
 		echo "Environments:"
 		echo "-------------"
-		echo "TEST_SERVER_URL ➡  DEFAULT: http://localhost/core"
+		echo "TEST_SERVER_URL ➡  DEFAULT: http://localhost/owncloud/core"
 		echo "APP_ROOT        ➡  path to the server app repository"
 		echo ""
 		exit 0
@@ -40,7 +40,7 @@ while test $# -gt 0; do
 	shift
 done
 
-export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://localhost/core"}
+export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://localhost/owncloud/core"}
 
 cd "$APP_ROOT" || exit
 
