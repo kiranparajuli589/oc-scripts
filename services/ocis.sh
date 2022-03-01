@@ -3,8 +3,8 @@
 export OCIS_INSECURE="true"
 export OCIS_LOG_LEVEL="error"
 export PROXY_ENABLE_BASIC_AUTH=True
-export OCIS_URL="https://localhost:9200"
-export WEB_ASSET_PATH="$HOME/www/web/dist/"
+export OCIS_URL="https://host.docker.internal:9200"
+export WEB_ASSET_PATH="$HOME/www/owncloud/web/dist/"
 export WEB_UI_CONFIG="$HOME/www/useful/ocis-config/web-config.json"
 export IDP_IDENTIFIER_REGISTRATION_CONF="$HOME/www/useful/ocis-config/idp.yml"
 
@@ -19,7 +19,7 @@ do
 			echo "==============================="
 			echo "Welcome to start ocis script ;)"
 			echo "==============================="
-			echo "Start ocis server at https://localhost:9200"
+			echo "Start ocis server at https://host.docker.internal:9200"
 			echo ""
 			echo "Options:"
 			echo "--------"

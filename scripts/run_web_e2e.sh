@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WITH_OCIS=false
-WEB_ROOT=${WEB_ROOT:-"$HOME""/www/web"}
+WEB_ROOT=${WEB_ROOT:-"$HOME""/owncloud/web"}
 
 while test $# -gt 0; do
 	key="$1"
@@ -25,13 +25,13 @@ while test $# -gt 0; do
 		echo "Environments:"
 		echo "-------------"
 		echo "WEB_ROOT         ➡  path where 'web' repository is cloned"
-		echo -e "\t\t  DEFAULT: $HOME/www/web"
+		echo -e "\t\t  DEFAULT: $HOME/owncloud/web"
 		echo "BASE_URL_OCIS    ➡  only required while running with ocis backend"
 		echo -e "\t\t  DEFAULT: localhost:9200"
 		echo "BACKEND_HOST     ➡  only required while running with oc10 backend"
 		echo -e "\t\t  DEFAULT: http://localhost/owncloud/core"
 		echo "SERVER_HOST      ➡  only required while running with oc10 backend"
-		echo -e "\t\t  DEFAULT: http://localhost/web/dist"
+		echo -e "\t\t  DEFAULT: http://localhost/owncloud/web/dist"
 		exit 0
 		;;
 	-o | --ocis)
@@ -58,7 +58,7 @@ if [ "$WITH_OCIS" = true ]; then
 else
 	export BACKEND_HOST=${BACKEND_HOST:-"http://localhost/owncloud/core"}
 	# do not use web integration app but the web itself
-	export SERVER_HOST=${SERVER_HOST:-"http://localhost/web/dist"}
+	export SERVER_HOST=${SERVER_HOST:-"http://localhost/owncloud/web/dist"}
 fi
 
 cd "$WEB_ROOT" || exit

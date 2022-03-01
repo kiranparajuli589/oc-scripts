@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WITH_OCIS=false
-WEB_ROOT=${WEB_ROOT:-"$HOME""/www/web"}
+WEB_ROOT=${WEB_ROOT:-"$HOME""/www/owncloud/web"}
 
 while test $# -gt 0
 do
@@ -25,24 +25,24 @@ do
 		echo "Environments:"
 		echo "-------------"
 		echo "WEB_ROOT             ➡  path where 'web' repository is cloned"
-		echo -e "\t\t\tDEFAULT: $HOME/www/web"
+		echo -e "\t\t\tDEFAULT: $HOME/owncloud/web"
 		echo -e "\t\t\tCAUTION: please do not include the trailing slash"
 		echo "SELENIUM_SERVER      ➡  selenium server url"
-		echo -e "\t\t\tDEFAULT: localhost:4444"
+		echo -e "\t\t\tDEFAULT: host.docker.internal:4444"
 		echo "MIDDLEWARE_HOST      ➡  middleware host url"
-		echo -e "\t\t\tDEFAULT: http://localhost:3000"
+		echo -e "\t\t\tDEFAULT: http://host.docker.internal:3000"
 		echo "REMOTE_UPLOAD_DIR    ➡  path to remote upload directory"
-		echo -e "\t\t\tDEFAULT: $HOME/www/owncloud-test-middleware/filesForUpload/"
+		echo -e "\t\t\tDEFAULT: $HOME/www/owncloud/middleware/filesForUpload/"
 		echo "SERVER_HOST          ➡  webUI host url"
 		echo -e "\t\t\tDEFAULT:"
-		echo -e "\t\t\t  - while testing with oc10 backend: http://localhost/web/dist"
-		echo -e "\t\t\t  - while testing with ocis backend: https://localhost/9200"
+		echo -e "\t\t\t  - while testing with oc10 backend: http://host.docker.internal/owncloud/web/dist"
+		echo -e "\t\t\t  - while testing with ocis backend: https://host.docker.internal/9200"
 		echo "BACKEND_HOST         ➡  server host url"
 		echo -e "\t\t\tDEFAULT:"
-		echo -e "\t\t\t  - while testing with oc10 backend: http://localhost/owncloud/core"
-		echo -e "\t\t\t  - while testing with ocis backend: https://localhost/9200"
+		echo -e "\t\t\t  - while testing with oc10 backend: http://host.docker.internal/owncloud/core"
+		echo -e "\t\t\t  - while testing with ocis backend: https://host.docker.internal/9200"
 		echo "REMOTE_BACKEND_HOST  ➡  remote backend host url (only set while running with oc10 backend for now)"
-    		echo -e "\t\t\tDEFAULT: http://localhost/owncloud-fed"
+    		echo -e "\t\t\tDEFAULT: http://host.docker.internal/owncloud/federated"
 		echo "TESTING_DATA_DIR     ➡  path to the 'testing' data directory"
 		echo -e "\t\t\tDEFAULT: $HOME/www/owncloud/core/apps/testing/data"
 		echo ""
@@ -66,7 +66,7 @@ do
 done
 
 # check if selenium server is available
-SELENIUM_SERVER=${SELENIUM_SERVER:-"localhost:4444"}
+SELENIUM_SERVER=${SELENIUM_SERVER:-"host.docker.internal:4444"}
 
 if wait-for-it "$SELENIUM_SERVER" --timeout=5
 then
@@ -75,27 +75,27 @@ else
 	echo "Hmm...looks like you forget to start the 'selenium' server"
 	echo "Don't worry :) We're starting it for you!"
 	bash -x "$HOME"/www/useful/services/web_selenium.sh
-	wait-for-it localhost:4444 --timeout=5
+	wait-for-it host.docker.internal:4444 --timeout=5
 	echo "Boom! the 'selenium' server is now up at PORT '4444'"
 fi
 
-export MIDDLEWARE_HOST=${MIDDLEWARE_HOST:-"http://localhost:3000"}
-export REMOTE_UPLOAD_DIR=${REMOTE_UPLOAD_DIR:-"$HOME""/www/owncloud-test-middleware/filesForUpload/"}
+export MIDDLEWARE_HOST=${MIDDLEWARE_HOST:-"http://host.docker.internal:3000"}
+export REMOTE_UPLOAD_DIR=${REMOTE_UPLOAD_DIR:-"$HOME""/www/owncloud/middleware/filesForUpload/"}
 
 if [ $WITH_OCIS = "True" ]; then
 	rm -rf /tmp/ocis
 	mkdir /tmp/ocis -p
 
-	export SERVER_HOST=${SERVER_HOST:-"https://localhost:9200"}  # where the ui is running
-	export BACKEND_HOST=${BACKEND_HOST:-"https://localhost:9200"} # where the api service is running
+	export SERVER_HOST=${SERVER_HOST:-"https://host.docker.internal:9200"}  # where the ui is running
+	export BACKEND_HOST=${BACKEND_HOST:-"https://host.docker.internal:9200"} # where the api service is running
 	export OCIS_REVA_DATA_ROOT="/tmp/ocis/owncloud/data"
 	export TESTING_DATA_DIR=${TESTING_DATA_DIR:-"$HOME/www/owncloud/core/apps/testing/data"}
 	export LOCAL_UPLOAD_DIR="/uploads"
 	export WEB_UI_CONFIG="$HOME/www/useful/ocis-config/web-config.json"
 else
-	export SERVER_HOST=${SERVER_HOST:-"http://localhost/web/dist"}
-	export BACKEND_HOST=${BACKEND_HOST:-"http://localhost/owncloud/core"}
-	export REMOTE_BACKEND_HOST=${REMOTE_BACKEND_HOST:-"http://localhost/owncloud-fed"}
+	export SERVER_HOST=${SERVER_HOST:-"http://host.docker.internal/owncloud/web/dist"}
+	export BACKEND_HOST=${BACKEND_HOST:-"http://host.docker.internal/owncloud/core"}
+	export REMOTE_BACKEND_HOST=${REMOTE_BACKEND_HOST:-"http://host.docker.internal/owncloud/federated"}
 fi
 
 cd "$WEB_ROOT""/tests/acceptance" || exit
