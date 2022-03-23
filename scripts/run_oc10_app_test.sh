@@ -1,5 +1,7 @@
 #!/bin/bash
 
+TEST_TYPE=${TEST_TYPE:-"api"}
+
 while test $# -gt 0; do
 	key="$1"
 	case ${key} in
@@ -49,7 +51,7 @@ if [ -z "$MULTIPLE" ] || [ "$MULTIPLE" -lt 1 ]; then
 fi
 
 for ((i = 1; i <= "$MULTIPLE"; i++)); do
-	if make test-acceptance-"$TEST_TYPE" BEHAT_FEATURE="$BEHAT_FEATURE"; then
+	if make test-acceptance-"$TEST_TYPE" BEHAT_FEATURE=tests/acceptance/features/"$BEHAT_FEATURE"; then
 		RESULT_ARRAY[$i]=0
 	else
 		RESULT_ARRAY[$i]=1

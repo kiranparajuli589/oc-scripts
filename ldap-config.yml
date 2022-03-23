@@ -1,0 +1,7 @@
+- ldap.example.org:
+  - server:
+    - port: 636
+    - host: localhost
+  - login:
+    - bind_id: cn=admin,dc=owncloud,dc=com
+    - bind_pass: admin

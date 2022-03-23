@@ -1,17 +1,20 @@
 {
   "server" : "http://host.docker.internal/owncloud/core/",
-  "theme": "owncloud",
+  "theme": "http://host.docker.internal/owncloud/core/themes/owncloud/theme.json",
   "version": "0.1.0",
   "auth": {
     "clientId": "Cxfj9F9ZZWQbQZps1E1M0BszMz6OOFq3lxjSuc8Uh4HLEYb9KIfyRMmgY5ibXXrU",
     "url": "http://host.docker.internal/owncloud/core/index.php/apps/oauth2/api/v1/token",
     "authUrl": "http://host.docker.internal/owncloud/core/index.php/apps/oauth2/authorize"
   },
+  "options": {
+    "displayResourcesLazy": false
+  },
   "apps": [
     "files",
     "draw-io",
     "markdown-editor",
-    "media-viewer"
-  ],
-  "external_apps": []
+    "media-viewer",
+    "search"
+  ]
 }
