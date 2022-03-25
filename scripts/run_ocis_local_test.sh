@@ -5,9 +5,10 @@ OCIS_ROOT=${OCIS_ROOT:-"$HOME""/go/src/github.com/owncloud/ocis"}
 export TEST_OCIS=true
 export SEND_SCENARIO_LINE_REFERENCES=true
 export STORAGE_DRIVER=${STORAGE_DRIVER:-"ocis"}
-export PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""www/owncloud/core"}
+export PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""/www/owncloud/core"}
 export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://localhost:9200"}
-export SKELETON_DIR=${SKELETON_DIR:-"$HOME""www/owncloud/core/apps-external/testing/data/apiSkeleton"}
+export SKELETON_DIR=${SKELETON_DIR:-"$HOME""/www/owncloud/core/apps-external/testing/data/apiSkeleton"}
+export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
 
 while test $# -gt 0
 do
@@ -27,6 +28,13 @@ do
 		echo ""
 		exit 0
 		;;
+	-f | --feature)
+		FEATURE="$2"
+		shift
+		;;
+	*)
+		export FEATURE="$1"
+		;;
 	esac
 	shift
 done
@@ -45,4 +53,4 @@ else
 fi
 
 cd "$OCIS_ROOT" || exit
-make test-acceptance-api BEHAT_FEATURE="$1"
+make test-acceptance-api "BEHAT_FEATURE=tests/acceptance/features/""$FEATURE"
