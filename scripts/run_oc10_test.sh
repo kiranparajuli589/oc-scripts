@@ -3,6 +3,8 @@
 PATH_TO_CORE=${PATH_TO_CORE:-"$HOME/www/owncloud/core"}
 TEST_TYPE=${TEST_TYPE:-"api"}
 
+echo $PATH_TO_CORE
+
 while test $# -gt 0
 do
 	key="$1"
@@ -17,7 +19,7 @@ do
 		echo "-t, --type      ➡  type of test to run"
 		echo -e "\t\t  OPTIONS:  'api', 'cli' or 'webui'"
 		echo -e "\t\t  DEFAULT:  'api'"
-		echo "-m, --multiple ➡  number of iteration to run the provided test"
+		echo "-m, --multiple  ➡  number of iteration to run the provided test"
 
 		echo "-f, --feature   ➡  feature to test"
 		echo -e "\t\t  a default argument; can be specified without any flag"

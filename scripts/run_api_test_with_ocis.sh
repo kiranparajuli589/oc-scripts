@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""www/owncloud/core"}
+PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""/www/owncloud/core"}
 OCIS_ROOT=${OCIS_ROOT:-"$HOME""/go/src/github.com/owncloud/ocis"}
 
 while test $# -gt 0
@@ -13,8 +13,8 @@ do
 		echo "========================================"
 		echo "Options:"
 		echo "--------"
-		echo "-h, --help     ➡  shows brief help about the script"
-		echo "-f, --feature  ➡  feature to test"
+		echo "-h, --help       ➡  shows brief help about the script"
+		echo "-f, --feature    ➡  feature to test"
 		echo -e "\t\t  a default argument; can be specified without any flag"
 		echo -e "\t\t  'tests/acceptance/features/' is already prefixed"
 		echo -e "\t\t  you can omit this path and just provide 'suiteName/test.feature'"
