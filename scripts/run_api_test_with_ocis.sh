@@ -48,7 +48,7 @@ export STORAGE_DRIVER=${STORAGE_DRIVER:-"ocis"}
 export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
 export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://localhost:9200"}
 export SKELETON_DIR=${SKELETON_DIR:-"$HOME/www/owncloud/core/apps-external/testing/data/apiSkeleton/"}
-export EXPECTED_FAILURES_FILE="$OCIS_ROOT/tests/acceptance/expected-failures-API-on-OCIS-storage.md"
+# export EXPECTED_FAILURES_FILE="$OCIS_ROOT/tests/acceptance/expected-failures-API-on-OCIS-storage.md"
 
 if [ "$STORAGE_DRIVER" = 'owncloud' ]
 then
