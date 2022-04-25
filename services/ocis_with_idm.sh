@@ -26,7 +26,7 @@ export PROXY_ENABLE_BASIC_AUTH="true"
 export STORAGE_LDAP_BIND_DN="uid=reva,ou=sysusers,o=libregraph-idm"
 export STORAGE_LDAP_BIND_PASSWORD="reva"
 export OCS_ACCOUNT_BACKEND_TYPE="cs3"
-export OCIS_RUN_EXTENSIONS="settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm"
+export OCIS_RUN_EXTENSIONS="settings,storage-metadata,graph,graph-explorer,ocs,store,thumbnails,web,webdav,storage-frontend,storage-gateway,storage-userprovider,storage-groupprovider,storage-authbasic,storage-authbearer,storage-authmachine,storage-users,storage-shares,storage-public-link,storage-appprovider,storage-sharing,proxy,idp,nats,idm,ocdav"
 export OCIS_LOG_LEVEL="debug"
 export OCIS_INSECURE="true"
 

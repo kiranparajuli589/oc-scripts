@@ -56,7 +56,7 @@ do
 done
 
 export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://localhost/owncloud/core"}
-#export TEST_SERVER_FED_URL=${TEST_SERVER_FED_URL:-"http://localhost/owncloud/federated"}
+export TEST_SERVER_FED_URL=${TEST_SERVER_FED_URL:-"http://localhost/owncloud/federated"}
 if [ "$TEST_TYPE" = 'webui' ]
 then
 	export SELENIUM_PORT=${SELENIUM_PORT:-4444}
