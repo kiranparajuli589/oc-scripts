@@ -70,6 +70,25 @@ done
 
 cd "$PATH_TO_CORE" || exit
 cd "$APP_ROOT" || exit
-pwd
-echo "$FEATURE"
-make $MAKE_PARAM"$TEST_TYPE" BEHAT_FEATURE=../../tests/acceptance/features/"$FEATURE"
+
+if [ -z "$MULTIPLE" ] || [ "$MULTIPLE" -lt 1 ]; then
+  MULTIPLE=1
+fi
+
+declare -A RESULT_ARRAY
+for ((i = 1; i <= "$MULTIPLE"; i++)); do
+  if make $MAKE_PARAM"$TEST_TYPE" BEHAT_FEATURE=../../tests/acceptance/features/"$FEATURE"; then
+    RESULT_ARRAY[$i]=0
+  else
+    RESULT_ARRAY[$i]=1
+  fi
+done
+
+
+echo "Test Summary:"
+echo "________________________________"
+
+for i in "${!RESULT_ARRAY[@]}"; do
+  STATUS=$([ ${RESULT_ARRAY[$i]} == 0 ] && echo "Passed (0)" || echo "Failed (1)")
+  echo -e "Iteration: ""$i""\tStatus: ""$STATUS"
+done
