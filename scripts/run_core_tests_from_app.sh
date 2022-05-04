@@ -75,6 +75,20 @@ if [ -z "$MULTIPLE" ] || [ "$MULTIPLE" -lt 1 ]; then
   MULTIPLE=1
 fi
 
+if [ "$TEST_TYPE" = 'webui' ]; then
+  export SELENIUM_PORT=${SELENIUM_PORT:-4444}
+  if wait-for-it "localhost:""$SELENIUM_PORT" --timeout=5; then
+    echo "Cheers! the 'selenium' server is running at port '4444'"
+  else
+    echo "Hmm...looks like you forget to start the 'selenium' server"
+    echo "Don't worry :) We're starting it for you!"
+    bash -x "$HOME"/www/useful/services/core_selenium.sh
+    wait-for-it localhost:4444 --timeout=5
+    export SELENIUM_PORT=4444
+    echo "Boom! the 'selenium' server is now up at PORT '4444'"
+  fi
+fi
+
 declare -A RESULT_ARRAY
 for ((i = 1; i <= "$MULTIPLE"; i++)); do
   if make $MAKE_PARAM"$TEST_TYPE" BEHAT_FEATURE=../../tests/acceptance/features/"$FEATURE"; then
