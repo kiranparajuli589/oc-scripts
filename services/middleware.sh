@@ -52,6 +52,7 @@ then
 	export RUN_ON_OCIS=true
 	export OCIS_REVA_DATA_ROOT="/tmp/ocis/owncloud/data"
 	export BACKEND_HOST=${BACKEND_HOST:-"https://host.docker.internal:9200"}
+	export TEST_WITH_GRAPH_API=true
 else
 	export BACKEND_HOST=${BACKEND_HOST:-"http://host.docker.internal/owncloud/core"}
 fi

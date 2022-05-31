@@ -1,7 +1,8 @@
 #!/bin/bash
 
-WITH_OCIS=false
-WEB_ROOT=${WEB_ROOT:-"$HOME""/www/owncloud/web"}
+export WITH_OCIS=false
+export WEB_ROOT=${WEB_ROOT:-"$HOME""/www/owncloud/web"}
+export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
 
 while test $# -gt 0
 do

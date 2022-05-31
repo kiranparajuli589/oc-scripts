@@ -1,29 +1,38 @@
 {
-    "server": "https://localhost:9200",
-    "theme": "owncloud",
+    "server": "https://host.docker.internal:9200",
+    "theme": "https://host.docker.internal:9200/themes/owncloud/theme.json",
     "version": "0.1.0",
     "openIdConnect": {
-        "metadata_url": "https://localhost:9200/.well-known/openid-configuration",
-        "authority": "https://localhost:9200",
+        "metadata_url": "https://host.docker.internal:9200/.well-known/openid-configuration",
+        "authority": "https://host.docker.internal:9200",
         "client_id": "web",
         "response_type": "code",
         "scope": "openid profile email"
+    },
+    "options": {
+        "displayResourcesLazy": false,
+        "sidebar": {
+            "shares": {
+                "showAllOnLoad": true
+            }
+        }
     },
     "apps": [
         "files",
         "draw-io",
         "markdown-editor",
         "media-viewer",
+        "pdf-viewer",
         "search"
     ],
     "external_apps": [
         {
             "id": "settings",
-            "path": "https://localhost:9200/settings.js"
+            "path": "https://host.docker.internal:9200/settings.js"
         },
         {
             "id": "accounts",
-            "path": "https://localhost:9200/accounts.js"
+            "path": "https://host.docker.internal:9200/accounts.js"
         }
     ]
 }

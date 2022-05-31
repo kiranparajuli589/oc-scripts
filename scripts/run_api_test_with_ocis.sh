@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""/www/owncloud/core"}
-OCIS_ROOT=${OCIS_ROOT:-"$HOME""/go/src/github.com/owncloud/ocis"}
+export PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""/www/owncloud/core"}
+export PATH_TO_OCIS=${PATH_TO_OCIS:-"$HOME""/go/src/github.com/owncloud/ocis"}
 
 while test $# -gt 0
 do
@@ -25,7 +25,7 @@ do
 		echo "OCIS_ROOT        ➡  DEFAULT: $HOME/go/src/github.com/owncloud/ocis"
 		echo "STORAGE_DRIVER   ➡  DEFAULT: 'ocis'"
 		echo "SSLKEYLOGFILE    ➡  DEFAULT: /tmp/sslkey.log"
-		echo "TEST_SERVER_URL  ➡  DEFAULT: https://localhost:9200"
+		echo "TEST_SERVER_URL  ➡  DEFAULT: https://host.docker.internal:9200"
 		echo "SKELETON_DIR     ➡  DEFAULT: $HOME/www/owncloud/core/apps-external/testing/data/apiSkeleton/"
 		echo ""
 		exit 0
@@ -43,14 +43,15 @@ done
 
 
 export TEST_OCIS="true"
+export TEST_WITH_GRAPH_API="true"
 export SEND_SCENARIO_LINE_REFERENCES="true"
 export STORAGE_DRIVER=${STORAGE_DRIVER:-"ocis"}
 export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
-export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://localhost:9200"}
+export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://host.docker.internal:9200"}
 export SKELETON_DIR=${SKELETON_DIR:-"$HOME/www/owncloud/core/apps-external/testing/data/apiSkeleton/"}
 
 # for tests running with graph api flag enabled
-export EXPECTED_FAILURES_FILE="$OCIS_ROOT/tests/acceptance/expected-failures-graphAPI-on-OCIS-storage.md"
+#export EXPECTED_FAILURES_FILE="$OCIS_ROOT/tests/acceptance/expected-failures-graphAPI-on-OCIS-storage.md"
 
 if [ "$STORAGE_DRIVER" = 'owncloud' ]
 then
