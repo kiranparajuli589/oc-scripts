@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/bash
+# shellcheck disable=SC1091
 
-# TODO: dir list from app-store
- source "$HOME"/www/useful/app_list.sh
+source "$HOME""/www/useful/scripts/helper/app_list.sh"
 
- APP_STORE=${APP_STORE:-"$HOME/www/owncloud/app_store/"}
+APP_STORE=${APP_STORE:-"$HOME/www/owncloud/app_store/"}
 
 
 work_to_perform() {
@@ -13,7 +13,7 @@ work_to_perform() {
 for APP in "${APP_LIST[@]}"
 do
   echo "$APP"
-  # check if app already exists in apps-store
+  # check if the app already exists in the apps-store
   if [[ ! -d "$APP_STORE""$APP" ]]
   then
     git clone "https://github.com/owncloud/""$APP"".git" "$APP_STORE""$APP" --depth=1
@@ -23,7 +23,7 @@ do
   # proceed only if the repository is actually an owncloud core app
   if [ -d appinfo ]
   then
-    # prepare git stage
+    # prepare git stages
     git stash && git stash clear
     git checkout master && git pull
     git checkout -b composer-allow-plugins
@@ -31,10 +31,10 @@ do
     # implement your work inside this function
     work_to_perform
 
-    # commit the changes and then push
+    # commit the changes and then push to the remote
     git add . && git commit -S -m "Add composer allow-plugins"
 
-    # create pr for the remote repository
+    # create PR for the remote repository
     PR_TITLE=${PR_TITLE:-"Add composer allow-plugins"}
     BODY_FILE=${BODY_FILE:-"$HOME/www/useful/pr_body.md"}
     gh pr create -a @me -B master --body-file "$BODY_FILE" -f -p "Current: QA/CI/TestAutomation" -r phil-davis -t "$PR_TITLE"

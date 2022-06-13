@@ -1,4 +1,4 @@
-APP_LIST=(
+export APP_LIST=(
 #  "firewall"
   "admin_audit"
   "user_ldap"

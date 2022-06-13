@@ -1,3 +1,5 @@
+#!/bin/bash
+
 export TEST_SERVER_URL="http://localhost:20080"
 export OCIS_REVA_DATA_ROOT="/var/tmp/reva/"
 export DELETE_USER_DATA_CMD="rm -rf /var/tmp/reva/data/nodes/root/* /var/tmp/reva/data/nodes/*-*-*-* /var/tmp/reva/data/blobs/*"

@@ -56,7 +56,13 @@ do
 			make generate
 			cd "$OCIS_ROOT""/ocis" || exit
 			make clean
-			make build
+			if make build
+			then
+        echo "ocis build successful"
+      else
+        echo "ocis build failed"
+        exit 1
+      fi
 			IDM_ADMIN_PASSWORD="admin" bin/ocis init --insecure true
 			shift
 			;;
