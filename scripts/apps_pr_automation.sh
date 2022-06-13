@@ -1,9 +1,17 @@
 #!/bin/bash
-# shellcheck disable=SC1091
 
-source "$HOME""/www/useful/scripts/helper/app_list.sh"
+APPS_STORE=${APPS_STORE:-"$HOME/www/owncloud/apps_store/"}
 
-APP_STORE=${APP_STORE:-"$HOME/www/owncloud/app_store/"}
+# app list file is expected to contain a list of apps to be checked
+# if app list file path is not provided, exit with an error
+if [ -z "$APP_LIST" ]
+then
+	echo "Please set APP_LIST variable to the path to the app list file"
+	exit 1
+else
+	# shellcheck disable=SC1090
+	source "${APP_LIST}"
+fi
 
 
 work_to_perform() {
@@ -14,9 +22,9 @@ for APP in "${APP_LIST[@]}"
 do
   echo "$APP"
   # check if the app already exists in the apps-store
-  if [[ ! -d "$APP_STORE""$APP" ]]
+  if [[ ! -d "$APPS_STORE""$APP" ]]
   then
-    git clone "https://github.com/owncloud/""$APP"".git" "$APP_STORE""$APP" --depth=1
+    git clone "https://github.com/owncloud/""$APP"".git" "$APPS_STORE""$APP" --depth=1
   fi
 
   cd "$HOME""/www/owncloud/apps-store/""$APP" || exit
