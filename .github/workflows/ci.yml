@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+
+name: CI
+
+jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel previous builds
+        uses: styfle/cancel-workflow-action@0.9.1
+        with:
+          all_but_latest: true
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install shellcheck
+        run: |
+          sudo apt-get install -y shellcheck
+      - name: Lint
+        run: make lint

@@ -1,3 +1,4 @@
+[![ShellCheck](https://github.com/kiranparajuli589/oc-scripts/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kiranparajuli589/oc-scripts/actions/workflows/ci.yml)
 # Handy scripts to run different [owncloud](https://github.com/owncloud) tests
 
 ## Services

@@ -1,3 +1,5 @@
+#!/bin/bash
+
 OCIS_ROOT=${OCIS_ROOT:-"$HOME""/go/src/github.com/owncloud/ocis"}
 
 export GRAPH_IDENTITY_BACKEND="ldap"
