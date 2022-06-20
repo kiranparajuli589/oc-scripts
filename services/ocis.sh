@@ -1,7 +1,6 @@
 #!/bin/bash
 
 export OCIS_URL="https://host.docker.internal:9200"
-#export GATEWAY_GRPC_ADDR="0.0.0.0:9142"
 export STORAGE_USERS_DRIVER_LOCAL_ROOT="/tmp/ocis/local/root"
 export STORAGE_USERS_DRIVER_OCIS_ROOT="/tmp/ocis/storage/users"
 export STORAGE_SYSTEM_DRIVER_OCIS_ROOT="/tmp/ocis/storage/metadata"

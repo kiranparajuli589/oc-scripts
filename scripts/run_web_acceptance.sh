@@ -87,8 +87,8 @@ if [ $WITH_OCIS = "True" ]; then
 	rm -rf /tmp/ocis
 	mkdir /tmp/ocis -p
 
-	export SERVER_HOST=${SERVER_HOST:-"https://host.docker.internal:9200"}  # where the ui is running
-	export BACKEND_HOST=${BACKEND_HOST:-"https://host.docker.internal:9200"} # where the api service is running
+	export SERVER_HOST=${SERVER_HOST:-"https://host.docker.internal:9200"}  # where the web ui is running
+	export BACKEND_HOST=${BACKEND_HOST:-"https://host.docker.internal:9200"} # where the backend is running
 	export OCIS_REVA_DATA_ROOT="/tmp/ocis/owncloud/data"
 	export TESTING_DATA_DIR=${TESTING_DATA_DIR:-"$HOME/www/owncloud/core/apps/testing/data"}
 	export LOCAL_UPLOAD_DIR="/uploads"

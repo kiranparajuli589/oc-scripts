@@ -1,7 +1,6 @@
 {
     "server": "https://host.docker.internal:9200",
     "theme": "https://host.docker.internal:9200/themes/owncloud/theme.json",
-    "version": "0.1.0",
     "openIdConnect": {
         "metadata_url": "https://host.docker.internal:9200/.well-known/openid-configuration",
         "authority": "https://host.docker.internal:9200",
@@ -10,6 +9,7 @@
         "scope": "openid profile email"
     },
     "options": {
+        "disablePreviews": true,
         "displayResourcesLazy": false,
         "sidebar": {
             "shares": {
@@ -20,19 +20,9 @@
     "apps": [
         "files",
         "draw-io",
-        "markdown-editor",
-        "media-viewer",
+        "text-editor",
+        "preview",
         "pdf-viewer",
         "search"
-    ],
-    "external_apps": [
-        {
-            "id": "settings",
-            "path": "https://host.docker.internal:9200/settings.js"
-        },
-        {
-            "id": "accounts",
-            "path": "https://host.docker.internal:9200/accounts.js"
-        }
     ]
 }
