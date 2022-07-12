@@ -3,6 +3,7 @@
 OCIS_ROOT=${OCIS_ROOT:-"$HOME""/go/src/github.com/owncloud/ocis"}
 
 export TEST_OCIS=true
+export TEST_WITH_GRAPH_API=true
 export SEND_SCENARIO_LINE_REFERENCES=true
 export STORAGE_DRIVER=${STORAGE_DRIVER:-"ocis"}
 export PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""/www/owncloud/core"}
