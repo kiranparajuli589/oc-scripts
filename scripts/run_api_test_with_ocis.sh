@@ -22,7 +22,7 @@ do
 		echo "Environments:"
 		echo "-------------"
 		echo "PATH_TO_CORE     ➡  DEFAULT: $HOME/www/owncloud/core"
-		echo "OCIS_ROOT        ➡  DEFAULT: $HOME/go/src/github.com/owncloud/ocis"
+		echo "PATH_TO_OCIS     ➡  DEFAULT: $HOME/go/src/github.com/owncloud/ocis"
 		echo "STORAGE_DRIVER   ➡  DEFAULT: 'ocis'"
 		echo "SSLKEYLOGFILE    ➡  DEFAULT: /tmp/sslkey.log"
 		echo "TEST_SERVER_URL  ➡  DEFAULT: https://host.docker.internal:9200"
@@ -51,7 +51,7 @@ export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://host.docker.internal:9200"}
 export SKELETON_DIR=${SKELETON_DIR:-"$HOME/www/owncloud/core/apps-external/testing/data/apiSkeleton/"}
 
 # for tests running with graph api flag enabled
-#export EXPECTED_FAILURES_FILE="$OCIS_ROOT/tests/acceptance/expected-failures-graphAPI-on-OCIS-storage.md"
+#export EXPECTED_FAILURES_FILE="$PATH_TO_OCIS/tests/acceptance/expected-failures-API-on-OCIS-storage.md"
 
 if [ "$STORAGE_DRIVER" = 'owncloud' ]
 then
