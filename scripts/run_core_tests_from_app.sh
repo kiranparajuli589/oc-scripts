@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
 export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://localhost/owncloud/core"}
 export BEHAT_FILTER_TAGS=${BEHAT_FILTER_TAGS:-"~@skip"}
 export DOWNLOADS_DIRECTORY=${DOWNLOADS_DIRECTORY:-"/tmp/downloads"}
@@ -82,7 +84,7 @@ if [ "$TEST_TYPE" = 'webui' ]; then
   else
     echo "Hmm...looks like you forget to start the 'selenium' server"
     echo "Don't worry :) We're starting it for you!"
-    bash -x "$HOME"/www/useful/services/core_selenium.sh
+    bash -x "$SCRIPT_DIR"/../services/core_selenium.sh
     wait-for-it localhost:4444 --timeout=5
     export SELENIUM_PORT=4444
     echo "Boom! the 'selenium' server is now up at PORT '4444'"

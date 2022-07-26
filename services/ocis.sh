@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
 export OCIS_URL="https://host.docker.internal:9200"
 export OCIS_INSECURE="true"
 export OCIS_LOG_LEVEL="debug"
@@ -16,9 +18,9 @@ export PROXY_ENABLE_BASIC_AUTH=True
 
 export SHARING_USER_JSON_FILE="/tmp/ocis/shares.json"
 
-export WEB_UI_CONFIG="$HOME/www/useful/ocis-config/web-config.json"
+export WEB_UI_CONFIG="$SCRIPT_DIR/../ocis-config/web-config.json"
 
-export IDP_IDENTIFIER_REGISTRATION_CONF="$HOME/www/useful/ocis-config/idp.yml"
+export IDP_IDENTIFIER_REGISTRATION_CONF="$SCRIPT_DIR/../ocis-config/idp.yml"
 
 export SETTINGS_DATA_PATH="/tmp/ocis/settings",
 

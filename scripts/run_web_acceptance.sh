@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+
 export WITH_OCIS=false
 export WEB_ROOT=${WEB_ROOT:-"$HOME""/www/owncloud/web"}
 export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
@@ -75,7 +77,7 @@ then
 else
 	echo "Hmm...looks like you forget to start the 'selenium' server"
 	echo "Don't worry :) We're starting it for you!"
-	bash -x "$HOME"/www/useful/services/web_selenium.sh
+	bash -x "$SCRIPT_DIR"/../services/web_selenium.sh
 	wait-for-it host.docker.internal:4444 --timeout=5
 	echo "Boom! the 'selenium' server is now up at PORT '4444'"
 fi
@@ -92,7 +94,7 @@ if [ $WITH_OCIS = "True" ]; then
 	export OCIS_REVA_DATA_ROOT="/tmp/ocis/owncloud/data"
 	export TESTING_DATA_DIR=${TESTING_DATA_DIR:-"$HOME/www/owncloud/core/apps/testing/data"}
 	export LOCAL_UPLOAD_DIR="/uploads"
-	export WEB_UI_CONFIG="$HOME/www/useful/ocis-config/web-config.json"
+	export WEB_UI_CONFIG="$SCRIPT_DIR/../ocis-config/web-config.json"
 else
 	export SERVER_HOST=${SERVER_HOST:-"http://host.docker.internal/owncloud/web/dist"}
 	export BACKEND_HOST=${BACKEND_HOST:-"http://host.docker.internal/owncloud/core"}

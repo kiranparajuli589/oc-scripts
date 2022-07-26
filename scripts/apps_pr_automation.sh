@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 APPS_STORE=${APPS_STORE:-"$HOME/www/owncloud/apps_store/"}
 
 # app list file is expected to contain a list of apps to be checked
@@ -44,7 +45,7 @@ do
 
     # create PR for the remote repository
     PR_TITLE=${PR_TITLE:-"Add composer allow-plugins"}
-    BODY_FILE=${BODY_FILE:-"$HOME/www/useful/pr_body.md"}
+    BODY_FILE=${BODY_FILE:-"$SCRIPT_DIR/helper/pr_body.md"}
     gh pr create -a @me -B master --body-file "$BODY_FILE" -f -p "Current: QA/CI/TestAutomation" -r phil-davis -t "$PR_TITLE"
   fi
 done
