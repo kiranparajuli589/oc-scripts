@@ -3,8 +3,8 @@
   "kind": "pipeline",
   "type": "docker",
   "name": "ocis-integration-tests-5",
-  "platform": {"os": "linux", "arch": "amd64"},
-  "trigger": {"event": {"include": ["pull_request", "tag"]}},
+  "platform": { "os": "linux", "arch": "amd64" },
+  "trigger": { "event": { "include": [ "pull_request", "tag" ] } },
   "steps": [
     {
       "name": "clone reva",
@@ -68,11 +68,11 @@
         "DIVIDE_INTO_NUM_PARTS": 6,
         "RUN_PART": 2,
         "EXPECTED_FAILURES_FILE": "/drone/src/tests/acceptance/expected-failures-on-OCIS-storage.md"
-        }
       }
+    }
   ],
   "services": [
-    {"name": "ldap", "image": "registry.cern.ch/docker.io/osixia/openldap:1.3.0", "pull": "always", "environment": {"LDAP_DOMAIN": "owncloud.com", "LDAP_ORGANISATION": "ownCloud", "LDAP_ADMIN_PASSWORD": "admin", "LDAP_TLS_VERIFY_CLIENT": "never", "HOSTNAME": "ldap"}}
+    { "name": "ldap", "image": "registry.cern.ch/docker.io/osixia/openldap:1.3.0", "pull": "always", "environment": { "LDAP_DOMAIN": "owncloud.com", "LDAP_ORGANISATION": "ownCloud", "LDAP_ADMIN_PASSWORD": "admin", "LDAP_TLS_VERIFY_CLIENT": "never", "HOSTNAME": "ldap" } }
   ],
-  "depends_on": ["changelog"]
+  "depends_on": [ "changelog" ]
 }

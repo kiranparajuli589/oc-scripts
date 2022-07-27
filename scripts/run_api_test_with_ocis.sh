@@ -2,9 +2,9 @@
 
 export PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""/www/owncloud/core"}
 export PATH_TO_OCIS=${PATH_TO_OCIS:-"$HOME""/go/src/github.com/owncloud/ocis"}
+export PATH_TO_WEB=${PATH_TO_WEB:-"$HOME""/www/owncloud/web"}
 
-while test $# -gt 0
-do
+while test $# -gt 0; do
 	key="$1"
 	case ${key} in
 	-h | --help)
@@ -23,6 +23,7 @@ do
 		echo "-------------"
 		echo "PATH_TO_CORE     ➡  DEFAULT: $HOME/www/owncloud/core"
 		echo "PATH_TO_OCIS     ➡  DEFAULT: $HOME/go/src/github.com/owncloud/ocis"
+		echo "PATH_TO_WEB      ➡  DEFAULT: $HOME/www/owncloud/web"
 		echo "STORAGE_DRIVER   ➡  DEFAULT: 'ocis'"
 		echo "SSLKEYLOGFILE    ➡  DEFAULT: /tmp/sslkey.log"
 		echo "TEST_SERVER_URL  ➡  DEFAULT: https://host.docker.internal:9200"
@@ -41,7 +42,6 @@ do
 	shift
 done
 
-
 export TEST_OCIS="true"
 export TEST_WITH_GRAPH_API="true"
 export SEND_SCENARIO_LINE_REFERENCES="true"
@@ -53,8 +53,7 @@ export SKELETON_DIR=${SKELETON_DIR:-"$HOME/www/owncloud/core/apps-external/testi
 # for tests running with graph api flag enabled
 #export EXPECTED_FAILURES_FILE="$PATH_TO_OCIS/tests/acceptance/expected-failures-API-on-OCIS-storage.md"
 
-if [ "$STORAGE_DRIVER" = 'owncloud' ]
-then
+if [ "$STORAGE_DRIVER" = 'owncloud' ]; then
 	export OCIS_REVA_DATA_ROOT="$PATH_TO_CORE""/data"
 	export OCIS_SKELETON_STRATEGY="copy"
 	export UPLOAD_DELETE_WAIT_TIME="1"
@@ -64,7 +63,6 @@ else
 	export UPLOAD_DELETE_WAIT_TIME=0
 	export BEHAT_FILTER_TAGS="~@skipOnOcis&&~@notToImplementOnOCIS&&~@toImplementOnOCIS&&~comments-app-required&&~@federation-app-required&&~@notifications-app-required&&~systemtags-app-required&&~@local_storage&&~@skipOnOcis-OCIS-Storage"
 fi
-
 
 cd "$PATH_TO_CORE" || exit
 

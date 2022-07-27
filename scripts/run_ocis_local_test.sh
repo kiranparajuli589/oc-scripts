@@ -11,8 +11,7 @@ export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://localhost:9200"}
 export SKELETON_DIR=${SKELETON_DIR:-"$HOME""/www/owncloud/core/apps-external/testing/data/apiSkeleton"}
 export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
 
-while test $# -gt 0
-do
+while test $# -gt 0; do
 	key="$1"
 	case ${key} in
 	-h | --help)
@@ -40,9 +39,7 @@ do
 	shift
 done
 
-
-if [ "$STORAGE_DRIVER" = "owncloud" ]
-then
+if [ "$STORAGE_DRIVER" = "owncloud" ]; then
 	export OCIS_REVA_DATA_ROOT="/tmp/ocis/owncloud/data/"
 	export OCIS_SKELETON_STRATEGY=copy
 	export BEHAT_FILTER_TAGS="~@skip&&~@skipOnOcis-OC-Storage"

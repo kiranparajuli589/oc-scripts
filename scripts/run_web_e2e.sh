@@ -77,12 +77,10 @@ for ((i = 1; i <= "$MULTIPLE"; i++)); do
 	fi
 done
 
-
 echo "Test Summary:"
 echo "________________________________"
 
-for i in "${!RESULT_ARRAY[@]}"
-do
-	STATUS=$( [ ${RESULT_ARRAY[$i]} == 0 ] && echo "Passed (0)" || echo "Failed (1)" )
+for i in "${!RESULT_ARRAY[@]}"; do
+	STATUS=$([ ${RESULT_ARRAY[$i]} == 0 ] && echo "Passed (0)" || echo "Failed (1)")
 	echo -e "Iteration: ""$i""\tStatus: ""$STATUS"
 done

@@ -1,16 +1,15 @@
 #!/bin/bash
 
-SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 
 export WITH_OCIS=false
 export WEB_ROOT=${WEB_ROOT:-"$HOME""/www/owncloud/web"}
 export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
 
-while test $# -gt 0
-do
+while test $# -gt 0; do
 	key="$1"
 	case ${key} in
-	-h|--help)
+	-h | --help)
 		echo "============================================"
 		echo "Welcome to run web acceptance test script ;)"
 		echo "============================================"
@@ -45,7 +44,7 @@ do
 		echo -e "\t\t\t  - while testing with oc10 backend: http://host.docker.internal/owncloud/core"
 		echo -e "\t\t\t  - while testing with ocis backend: https://host.docker.internal/9200"
 		echo "REMOTE_BACKEND_HOST  ➡  remote backend host url (only set while running with oc10 backend for now)"
-    		echo -e "\t\t\tDEFAULT: http://host.docker.internal/owncloud/federated"
+		echo -e "\t\t\tDEFAULT: http://host.docker.internal/owncloud/federated"
 		echo "TESTING_DATA_DIR     ➡  path to the 'testing' data directory"
 		echo -e "\t\t\tDEFAULT: $HOME/www/owncloud/core/apps/testing/data"
 		echo ""
@@ -54,7 +53,7 @@ do
 	-o | --ocis)
 		WITH_OCIS=True
 		;;
-	-m|--multiple)
+	-m | --multiple)
 		MULTIPLE="$2"
 		shift
 		;;
@@ -71,8 +70,7 @@ done
 # check if selenium server is available
 SELENIUM_SERVER=${SELENIUM_SERVER:-"host.docker.internal:4444"}
 
-if wait-for-it "$SELENIUM_SERVER" --timeout=5
-then
+if wait-for-it "$SELENIUM_SERVER" --timeout=5; then
 	echo "Cheers! the 'selenium' server is running at port '4444'"
 else
 	echo "Hmm...looks like you forget to start the 'selenium' server"
@@ -89,7 +87,7 @@ if [ $WITH_OCIS = "True" ]; then
 	rm -rf /tmp/ocis
 	mkdir /tmp/ocis -p
 
-	export SERVER_HOST=${SERVER_HOST:-"https://host.docker.internal:9200"}  # where the web ui is running
+	export SERVER_HOST=${SERVER_HOST:-"https://host.docker.internal:9200"}   # where the web ui is running
 	export BACKEND_HOST=${BACKEND_HOST:-"https://host.docker.internal:9200"} # where the backend is running
 	export OCIS_REVA_DATA_ROOT="/tmp/ocis/owncloud/data"
 	export TESTING_DATA_DIR=${TESTING_DATA_DIR:-"$HOME/www/owncloud/core/apps/testing/data"}
@@ -103,21 +101,18 @@ fi
 
 cd "$WEB_ROOT""/tests/acceptance" || exit
 
-if [ -z "$MULTIPLE" ] || [ "$MULTIPLE" -lt 1 ]
-then
+if [ -z "$MULTIPLE" ] || [ "$MULTIPLE" -lt 1 ]; then
 	MULTIPLE=1
 fi
 
 declare -A RESULT_ARRAY
 
-for (( i=1; i<="$MULTIPLE"; i++ ))
-do
+for ((i = 1; i <= "$MULTIPLE"; i++)); do
 	case "$WITH_OCIS" in
-		True) SCRIPT="test:acceptance:ocis" ;;
-		*) SCRIPT="test:acceptance:oc10" ;;
+	True) SCRIPT="test:acceptance:ocis" ;;
+	*) SCRIPT="test:acceptance:oc10" ;;
 	esac
-	if yarn "$SCRIPT" features/"$FEATURE"
-	then
+	if yarn "$SCRIPT" features/"$FEATURE"; then
 		RESULT_ARRAY[$i]=0
 	else
 		RESULT_ARRAY[$i]=1
@@ -127,8 +122,7 @@ done
 echo "Test Summary:"
 echo "________________________________"
 
-for i in "${!RESULT_ARRAY[@]}"
-do
-	STATUS=$( [ ${RESULT_ARRAY[$i]} == 0 ] && echo "Passed (0)" || echo "Failed (1)" )
+for i in "${!RESULT_ARRAY[@]}"; do
+	STATUS=$([ ${RESULT_ARRAY[$i]} == 0 ] && echo "Passed (0)" || echo "Failed (1)")
 	echo -e "Iteration: ""$i""\tStatus: ""$STATUS"
 done
