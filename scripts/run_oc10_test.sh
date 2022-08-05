@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR =$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 PATH_TO_CORE=${PATH_TO_CORE:-"$HOME/www/owncloud/core"}
 TEST_TYPE=${TEST_TYPE:-"api"}
 

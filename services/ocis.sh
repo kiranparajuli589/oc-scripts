@@ -54,13 +54,9 @@ while test $# -gt 0; do
 		echo ""
 		exit 0
 		;;
-	-r | --refresh)
-		cd "$OCIS_ROOT" || exit
-		rm -rf "$HOME"/.ocis
-		IDM_ADMIN_PASSWORD="admin" bin/ocis init --insecure true
-		;;
 	-f | --fresh)
 		cd "$OCIS_ROOT" || exit
+		git stash && git checkout master && git pull
 		rm -rf "$HOME"/.ocis
 		make clean
 		make generate
