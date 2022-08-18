@@ -4,37 +4,53 @@
 
 ## Services
 
-- ocis
-- middleware
+```console
+services
+├── core_selenium.sh
+├── middleware.sh
+├── ocis.sh
+├── ocis_with_idm.sh
+└── web_selenium.sh
+```
 
 ## Scripts
 
-- run_api_test_with_ocis.sh
-- run_oc10_app_test.sh
-- run_oc10_test.sh
-- run_ocis_local_test.sh
-- run_web_acceptance.sh
-- run_web_e2e.sh
+```console
+scripts
+├── apps_pr_automation.sh
+├── helper
+│    ├── list_repos.sh
+│    └── pr_body.md
+├── run_api_test_with_ocis.sh
+├── run_api_test_with_reva.sh
+├── run_core_tests_from_app.sh
+├── run_oc10_app_test.sh
+├── run_oc10_test.sh
+├── run_ocis_local_test.sh
+├── run_web_acceptance.sh
+└── run_web_e2e.sh
+```
 
 ## Dependencies
 
 - [wait-for-it](https://github.com/vishnubob/wait-for-it 'wait-for-it') is a debian package which helps us to wait for
-	the availability of a host and a TCP port
+  the availability of a host and a TCP port
 
-	Installation:
-		```shell
-		sudo apt-get install wait-for-it
-		```
+  Installation:
+
+	```shell
+	sudo apt-get install wait-for-it
+	```
 
 ## Run services
 
-```sh
+```shell
 bash services/ocis.sh --help
 ```
 
 ## Run scripts
 
-```sh
+```shell
 bash scripts/run_api_test_with_ocis.sh --help
 ```
 
