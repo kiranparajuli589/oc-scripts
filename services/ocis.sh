@@ -71,6 +71,22 @@ while test $# -gt 0; do
 		IDM_ADMIN_PASSWORD="admin" bin/ocis init --insecure true
 		shift
 		;;
+	-c | --clean)
+		cd "$OCIS_ROOT" || exit
+		rm -rf "$HOME"/.ocis
+		make clean
+		make generate
+		cd "$OCIS_ROOT""/ocis" || exit
+		make clean
+		if make build; then
+			echo "ocis build successful"
+		else
+			echo "ocis build failed"
+			exit 1
+		fi
+		IDM_ADMIN_PASSWORD="admin" bin/ocis init --insecure true
+		shift
+		;;
 	esac
 	shift
 done

@@ -7,9 +7,10 @@ export TEST_WITH_GRAPH_API=true
 export SEND_SCENARIO_LINE_REFERENCES=true
 export STORAGE_DRIVER=${STORAGE_DRIVER:-"ocis"}
 export PATH_TO_CORE=${PATH_TO_CORE:-"$HOME""/www/owncloud/core"}
-export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://localhost:9200"}
+export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://host.docker.internal:9200"}
 export SKELETON_DIR=${SKELETON_DIR:-"$HOME""/www/owncloud/core/apps-external/testing/data/apiSkeleton"}
 export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
+export EXPECTED_FAILURES_FILE="$OCIS_ROOT/tests/acceptance/expected-failures-localAPI-on-OCIS-storage.md"
 
 while test $# -gt 0; do
 	key="$1"
@@ -22,7 +23,7 @@ while test $# -gt 0; do
 		echo "-------------"
 		echo "STORAGE_DRIVER   ➡  DEFAULT: 'ocis'"
 		echo "PATH_TO_CORE     ➡  DEFAULT: $HOME/www/owncloud/core"
-		echo "TEST_SERVER_URL  ➡  DEFAULT: https://localhost:9200"
+		echo "TEST_SERVER_URL  ➡  DEFAULT: https://host.docker.internal:9200"
 		echo "OCIS_ROOT        ➡  DEFAULT: $HOME/go/src/github.com/owncloud/ocis"
 		echo "SKELETON_DIR     ➡  DEFAULT: $HOME/www/owncloud/core/apps-external/testing/data/apiSkeleton"
 		echo ""

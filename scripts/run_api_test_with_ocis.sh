@@ -50,8 +50,7 @@ export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
 export TEST_SERVER_URL=${TEST_SERVER_URL:-"https://host.docker.internal:9200"}
 export SKELETON_DIR=${SKELETON_DIR:-"$HOME/www/owncloud/core/apps-external/testing/data/apiSkeleton/"}
 
-# for tests running with graph api flag enabled
-#export EXPECTED_FAILURES_FILE="$PATH_TO_OCIS/tests/acceptance/expected-failures-API-on-OCIS-storage.md"
+export EXPECTED_FAILURES_FILE="$PATH_TO_OCIS/tests/acceptance/expected-failures-API-on-OCIS-storage.md"
 
 if [ "$STORAGE_DRIVER" = 'owncloud' ]; then
 	export OCIS_REVA_DATA_ROOT="$PATH_TO_CORE""/data"
