@@ -1,6 +1,10 @@
 #!/bin/bash
 
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 TEST_TYPE=${TEST_TYPE:-"api"}
+CORE_PATH=${CORE_PATH:-"$HOME/www/owncloud/core"}
+LOCAL_MAILHOG_HOST=${LOCAL_MAILHOG_HOST:-"host.docker.internal"}
+MAILHOG_PORT=${MAILHOG_PORT:-"8025"}
 
 while test $# -gt 0; do
 	key="$1"
@@ -18,8 +22,10 @@ while test $# -gt 0; do
 		echo ""
 		echo "Environments:"
 		echo "-------------"
-		echo "TEST_SERVER_URL ➡  DEFAULT: http://localhost/owncloud/core"
-		echo "APP_ROOT        ➡  path to the server app repository"
+		echo "TEST_SERVER_URL     ➡  DEFAULT: http://host.docker.internal/owncloud/core"
+		echo "APP_ROOT            ➡  path to the server app repository"
+		echo "LOCAL_MAILHOG_HOST  ➡  DEFAULT: http://host.docker.internal/owncloud/core"
+		echo "MAILHOG_ROOT        ➡  path to the server app repository"
 		echo ""
 		exit 0
 		;;
@@ -42,8 +48,23 @@ while test $# -gt 0; do
 	shift
 done
 
-export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://localhost/owncloud/core"}
+export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://host.docker.internal/owncloud/core"}
 
+if [ "$TEST_TYPE" = 'webui' ]; then
+	export SELENIUM_PORT=${SELENIUM_PORT:-4444}
+	if wait-for-it "localhost:""$SELENIUM_PORT" --timeout=5; then
+		echo "Cheers! the 'selenium' server is running at port '4444'"
+	else
+		echo "Hmm...looks like you forget to start the 'selenium' server"
+		echo "Don't worry :) We're starting it for you!"
+		bash -x "$SCRIPT_DIR"/../services/core_selenium.sh
+		wait-for-it localhost:4444 --timeout=5
+		export SELENIUM_PORT=4444
+		echo "Boom! the 'selenium' server is now up at PORT '4444'"
+	fi
+fi
+
+cd "$CORE_PATH" || exit
 cd "$APP_ROOT" || exit
 
 if [ -z "$MULTIPLE" ] || [ "$MULTIPLE" -lt 1 ]; then
