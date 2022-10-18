@@ -43,7 +43,7 @@ while test $# -gt 0; do
 done
 
 export TEST_OCIS="true"
-export TEST_WITH_GRAPH_API="true"
+export TEST_WITH_GRAPH_API=${TEST_WITH_GRAPH_API:-true}
 export SEND_SCENARIO_LINE_REFERENCES="true"
 export STORAGE_DRIVER=${STORAGE_DRIVER:-"ocis"}
 export SSLKEYLOGFILE=${SSLKEYLOGFILE:-"/tmp/sslkey.log"}
