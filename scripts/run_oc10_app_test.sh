@@ -49,6 +49,7 @@ while test $# -gt 0; do
 done
 
 export TEST_SERVER_URL=${TEST_SERVER_URL:-"http://host.docker.internal/owncloud/core"}
+export TEST_SERVER_FED_URL=${TEST_SERVER_FED_URL:-"http://cloud.owncloud.test/owncloud/core1"}
 
 if [ "$TEST_TYPE" = 'webui' ]; then
 	export SELENIUM_PORT=${SELENIUM_PORT:-4444}

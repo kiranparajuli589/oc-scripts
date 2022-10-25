@@ -1,7 +1,7 @@
 #!/bin/bash
 
 WITH_OCIS=false
-WEB_ROOT=${WEB_ROOT:-"$HOME""/owncloud/web"}
+WEB_ROOT=${WEB_ROOT:-"$HOME""/www/owncloud/web"}
 
 while test $# -gt 0; do
 	key="$1"
@@ -70,7 +70,7 @@ fi
 declare -A RESULT_ARRAY
 
 for ((i = 1; i <= "$MULTIPLE"; i++)); do
-	if yarn test:e2e:cucumber tests/e2e/cucumber/"${FEATURE}"; then
+	if  pnpm test:e2e:cucumber tests/e2e/cucumber/features/"${FEATURE}"; then
 		RESULT_ARRAY[$i]=0
 	else
 		RESULT_ARRAY[$i]=1
