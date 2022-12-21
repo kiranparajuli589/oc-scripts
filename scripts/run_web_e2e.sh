@@ -54,11 +54,11 @@ done
 
 if [ "$WITH_OCIS" = true ]; then
 	export OCIS=true
-	export BASE_URL_OCIS=${BASE_URL_OCIS:-"localhost:9200"}
+	export BASE_URL_OCIS=${BASE_URL_OCIS:-"host.docker.internal:9200"}
 else
-	export BACKEND_HOST=${BACKEND_HOST:-"http://localhost/owncloud/core"}
+	export BACKEND_HOST=${BACKEND_HOST:-"http://host.docker.internal/owncloud/core"}
 	# do not use web integration app but the web itself
-	export SERVER_HOST=${SERVER_HOST:-"http://localhost/owncloud/web/dist"}
+	export SERVER_HOST=${SERVER_HOST:-"http://host.docker.internal/owncloud/web/dist"}
 fi
 
 cd "$WEB_ROOT" || exit
